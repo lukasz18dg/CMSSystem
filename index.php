@@ -1,15 +1,18 @@
 <?php
+session_start();
     include_once 'config.php';
-    
-    echo 'Test';
-    $wynik=DataBaseclass::selectBySQL('SELECT * FROM `uzytkownik`');
-    foreach ($wynik as $i)
+
+    /*Dane z POSTU*/
+    /*Wersja testowa tylko!*/
+    $wynik=DataBaseclass::selectBySQL('SELECT * FROM `uzytkownik` WHERE `Nick` = "a"');
+    if($wynik)
     {
-        foreach ($i as $a)
-        {
-            echo ' wartosc pobrana z bazy '.$a.'<br>';
+        foreach ($wynik as $i)
+        {   
+            $_SESSION["Nick"]=$i["Nick"];
+            $_SESSION["Email"]=$i["email"];
+            $_SESSION["Uprawnienia"]=$i["Uprawnienia"];
         }
-        echo "<br><br>";
     }
 ?>
 
