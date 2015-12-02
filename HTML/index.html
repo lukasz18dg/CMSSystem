@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang = "pl">
+
+<head>
+<script src="jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="jquery.js"></script>
+<title>Ruch Lewostronny czyli prawdziwa strona Premier League</title>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<div class="container-fluid">
+		<img class="img-responsive" src="images/logo.png"/>
+	</div>
+
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="250">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Ruch Lewostronny</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+			
+          <li><a href="#section1">Section 1</a></li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Kluby 
+			<span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-left">
+			
+			<table>
+			<tr>
+			<td>
+			  <div class = "tabela">
+              <li><a href="#sectionx"><img src="images/kluby/arsenal.png" 	width="64" height="64"/> Arsenal</a></li>
+              <li><a href="#sectionx"><img src="images/kluby/avilla.png" 	width="64" height="64"/> Aston Villa</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/bourne.png" 	width="64" height="64"/> Bournemouth</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/chelsea.png" 	width="64" height="64"/> Chelsea</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/palace.png" 	width="64" height="64"/> Crystal Palace</a></li>
+			  </div>
+			</td>
+			
+			<td>
+			  <div class = "tabela">
+			  <li><a href="#sectionx"><img src="images/kluby/everton.png" 	width="64" height="64"/> Everton</a></li>
+              <li><a href="#sectionx"><img src="images/kluby/lester.png" 	width="64" height="64"/> Leicester</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/lpool.png" 	width="64" height="64"/> Liverpool</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/mcity.png" 	width="64" height="64"/> Man City</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/munit.png" 	width="64" height="64"/> Man Utd</a></li>
+			  </div>
+			</td>
+			
+			<td>
+			  <div class = "tabela">
+			  <li><a href="#sectionx"><img src="images/kluby/nufc.png" 		width="64" height="64"/> Newcastle</a></li>
+              <li><a href="#sectionx"><img src="images/kluby/norwich.png" 	width="64" height="64"/> Norwich</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/soton.png" 	width="64" height="64"/> Southampton</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/stoke.png" 	width="64" height="64"/> Stoke</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/sunder.png" 	width="64" height="64"/> Sunderland</a></li>
+			  </div>
+			</td>
+			
+			<td>
+			  <div class = "tabela">
+			  <li><a href="#sectionx"><img src="images/kluby/swans.png" 	width="64" height="64"/> Swansea</a></li>
+              <li><a href="#sectionx"><img src="images/kluby/spurs.png" 	width="64" height="64"/> Spurs</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/watford.png" 	width="64" height="64"/> Watford</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/wba.png" 		width="64" height="64"/> West Brom</a></li>
+			  <li><a href="#sectionx"><img src="images/kluby/whu.png" 		width="64" height="64"/> West Ham</a></li>
+			  </div>
+			</td>
+			</tr>
+			<!--
+			<tr>
+			<td colspan="4"><hr /></td>
+			</tr>
+			
+			<td class="addclubs" colspan ="4">
+				<p>
+					
+				</p>
+			</td>
+			-->
+			</table>
+			</ul>
+			</li>
+			
+		<!-- WSTAWIANIE SEKCJI -->
+		<li><a href="#section2">Section 2</a></li>
+		<li><a href="#section3">Section 3</a></li>
+        </ul>
+		<ul class="nav navbar-nav navbar-right">
+        
+		<li><a data-toggle="modal" data-target="#logowanie"><span class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
+    
+	<!-- LOGOWANIE -->
+	<div class="modal fade" id="logowanie" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- PANEL LOGOWANIA -->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 30px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-lock"> Logowanie</span></h4>
+        </div>
+        <!-- POLA FORUMLARZA PANELU -->
+		<div class="modal-body" style="padding:40px 40px;">
+          <form role="form">
+			<div class="form-group">
+				<label for="username"><span class="glyphicon glyphicon-user"> Login</span></label>
+				<input type="text" class="form-control" id="username" placeholder="Wpisz e-mail lub nazwę użytkownika">
+			</div>
+			
+			<div class="form-group">
+				<label for="passwd"><span class="glyphicon glyphicon-edit"> Hasło</span></label>
+				<input type="password" class="form-control" id="passwd" placeholder="Wpisz hasło">
+			</div>
+			
+			<div class="checkbox">
+				<label><input type="checkbox" value="" checked>Zapamiętaj mnie</label>
+			</div>
+			
+			<button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok"> Wyślij</span></button>
+        </div>
+        <!-- STOPKA PANELU -->
+		<div class="modal-footer">
+			<button type="button" class="btn-lg btn-danger pull-right" data-dismiss="modal">Zamknij</button>
+			<p align="left">Jeszcze nie masz konta? <a href="#">Zarejestruj się!</a></p>
+			<p align="left">Zapomniałeś <a href="#">hasła?</a></p>
+        </div>
+		
+	  </div>
+	  </div>
+</nav>    
+
+<div id="section1" class="container-fluid">
+  <h1>Section 1</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section2" class="container-fluid">
+  <h1>Section 2</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section3" class="container-fluid">
+  <h1>Section 3</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+</body>
+
+</html>
