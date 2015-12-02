@@ -14,10 +14,5 @@ session_start();
             $_SESSION["Uprawnienia"]=$i["Uprawnienia"];
         }
     }
-    
-    $zmienna = file_get_contents($adres_strony);
-		$a=strpos($zmienna, '<div class="entry-content">');
-		$b=strpos($zmienna,'</div>', $a);
-		$zmienna=substr($zmienna,$a,$b-$a);
 ?>
 
