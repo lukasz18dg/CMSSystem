@@ -1,0 +1,32 @@
+/* dodanie czcionki Premier League */
+@font-face {
+font-family: 'PremierLeague';
+font-style: normal;
+font-weight: normal;
+src: local('PremierLeague'), url('fonts/BPL.woff') format('woff');
+}
+
+body {position: relative;}
+
+.affix 						{top: 0; width: 100%; -webkit-transition: all .5s ease-in-out; transition: all .5s ease-in-out;}
+.affix-top 					{position: static; top: -35px;}
+.navbar 						{margin-bottom: 0px;}
+.affix  + .container-fluid 	{padding-top: 70px;}
+
+#section1 	{padding-top: 50px; height: 500px; color: #fff; background-color: #1E88E5;}
+#section2 	{padding-top: 50px; height: 500px; color: #fff; background-color: #673ab7;}
+#section3 	{padding-top: 50px; height: 500px; color: #fff; background-color: #ff9800;}
+
+.tabela 				{width: 183px; height: -100px; border-collapse: collapse; background-color: #fff;}
+.tabela a:link		{color: #000000; text-decoration: none; font-family: 'PremierLeague';}
+.tabela a:hover		{color: #002F5F; text-decoration: none; font-family: 'PremierLeague';}
+
+hr {display:block; margin-top:0.5em; margin-bottom:0.5em; margin-left:auto; margin-right:auto; border-style:solid; border-width:1px; color:#1E88E5;} 
+
+.modal-header, h4, .close 	{background-color:#002F5F; color:white !important; text-align:center; font-size:30px;}
+.modal-footer 				{background-color:#f9f9f9; text-align:left;}
+
+#ligowa tr  th					{background-color: #002F5F; color: #FFFFFF; text-align: center;}
+#ligowa tr					{text-align: center;}
+.listy						{background-color: #002F5F; color: #FFFFFF; text-align: center;}
+.listy select					{color: #000000; text-align: left;}
