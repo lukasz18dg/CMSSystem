@@ -1,0 +1,43 @@
+<ul class="nav navbar-nav navbar-right">
+	<li><a data-toggle="modal" data-target="#logowanie"><span class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
+	<!-- LOGOWANIE -->
+	<div class="modal fade" id="logowanie" role="dialog">
+		<div class="modal-dialog">
+			<!-- PANEL LOGOWANIA -->
+			<div class="modal-content">
+				<div class="modal-header" style="padding:35px 30px;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"><span class="glyphicon glyphicon-lock"> Logowanie</span></h4>
+				</div>
+				<!-- POLA FORUMLARZA PANELU -->
+				<div class="modal-body" style="padding:40px 40px;">
+					<form role="form" action="index.php" method="post">
+						<div class="form-group">
+							<label for="username"><span class="glyphicon glyphicon-user"> Login</span></label>
+							<input type="text" class="form-control" id="username" name="id" placeholder="Wpisz e-mail lub nazwę użytkownika">
+						</div>
+						
+						<div class="form-group">
+							<label for="passwd"><span class="glyphicon glyphicon-edit"> Hasło</span></label>
+							<input type="password" class="form-control" id="passwd" name="passwd" placeholder="Wpisz hasło">
+						</div>
+						
+						<div class="checkbox">
+							<label><input type="checkbox" value="" checked>Zapamiętaj mnie</label>
+						</div>
+						<input type="hidden" name="send" value="login">
+						<button type="submit" class="btn btn-primary btn-block">
+						<span class="glyphicon glyphicon-ok"> Wyślij</span></button>
+					</form>
+				</div>
+
+				<!-- STOPKA PANELU -->
+				<div class="modal-footer">
+					<button type="button" class="btn-lg btn-danger pull-right" data-dismiss="modal">Zamknij</button>
+					<p align="left">Jeszcze nie masz konta? <a href="#">Zarejestruj się!</a></p>
+					<p align="left">Zapomniałeś <a href="#">hasła?</a></p>
+				</div>	
+			</div>
+		</div>
+	</div>
+</ul>

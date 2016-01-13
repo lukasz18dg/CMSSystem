@@ -1,4 +1,5 @@
 <?php
-$_SESSION['active_page']="mainpage";
-$KodHTML = new LoadHTMLCode();  
-$KodHTML->CodeHTML();
+$_SESSION['active_page']="index";
+ZbiorDanych('index.php');
+
+?>

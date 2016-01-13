@@ -3,7 +3,7 @@
 font-family: 'PremierLeague';
 font-style: normal;
 font-weight: normal;
-src: local('PremierLeague'), url('fonts/BPL.woff') format('woff');
+src: local('PremierLeague'), url('HTML2/fonts/BPL.woff') format('woff');
 }
 
 body {position: relative;}

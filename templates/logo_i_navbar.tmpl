@@ -1,0 +1,78 @@
+<div class="container-fluid">
+	<img class="img-responsive" src="HTML2/images/logo.png"/>
+</div>
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>                        
+			</button>
+			<a class="navbar-brand" href="#">Ruch Lewostronny</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li><a href="#section1">Section 1</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Kluby <span class="caret"></span></a>
+					<ul class="dropdown-menu dropdown-menu-left">
+						<table>
+							<tr>
+								<td>
+									<div class = "tabela">
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/arsenal.png" 	width="64" height="64"/> Arsenal</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/avilla.png" 	width="64" height="64"/> Aston Villa</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/bourne.png" 	width="64" height="64"/> Bournemouth</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/chelsea.png" 	width="64" height="64"/> Chelsea</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/palace.png" 	width="64" height="64"/> Crystal Palace</a></li>
+									</div>
+								</td>
+						
+								<td>
+									<div class = "tabela">
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/everton.png" 	width="64" height="64"/> Everton</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/lester.png" 	width="64" height="64"/> Leicester</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/lpool.png" 	width="64" height="64"/> Liverpool</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/mcity.png" 	width="64" height="64"/> Man City</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/munit.png" 	width="64" height="64"/> Man Utd</a></li>
+									</div>
+								</td>
+						
+								<td>
+									<div class = "tabela">
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/nufc.png" 		width="64" height="64"/> Newcastle</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/norwich.png" 	width="64" height="64"/> Norwich</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/soton.png" 	width="64" height="64"/> Southampton</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/stoke.png" 	width="64" height="64"/> Stoke</a></li>
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/sunder.png" 	width="64" height="64"/> Sunderland</a></li>
+								  </div>
+								</td>
+						
+								<td>
+									<div class = "tabela">
+										<li><a href="#sectionx"><img src="HTML2/images/kluby/swans.png" 	width="64" height="64"/> Swansea</a></li>
+										  <li><a href="#sectionx"><img src="HTML2/images/kluby/spurs.png" 	width="64" height="64"/> Spurs</a></li>
+										  <li><a href="#sectionx"><img src="HTML2/images/kluby/watford.png" 	width="64" height="64"/> Watford</a></li>
+										  <li><a href="#sectionx"><img src="HTML2/images/kluby/wba.png" 		width="64" height="64"/> West Brom</a></li>
+										  <li><a href="#sectionx"><img src="HTML2/images/kluby/whu.png" 		width="64" height="64"/> West Ham</a></li>
+								  </div>
+								</td>
+							</tr>
+						</table>
+					</ul>
+				</li>
+					
+				<!-- WSTAWIANIE SEKCJI -->
+				<li><a href="#section2">Section 2</a></li>
+				<li><a href="#section3">Section 3</a></li>
+			</ul>
+			
+			{% if not zalogowany %}
+				{% include 'niezalogowany.tmpl' %}
+			{% else %}
+				{% include 'zalogowany.tmpl' %}
+			{% endif %}
+		</div>
+	</div>
+</nav>
