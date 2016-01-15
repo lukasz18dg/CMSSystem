@@ -7,7 +7,7 @@ class DataBaseclass
         $laczenie = new mysqli(DB_ADRESSERWERA, DB_NAZWAUZYTKOWNIKA, DB_HASLO, DB_NAZWABAZY);
         if(!mysqli_connect_errno())
         {
-            $laczenie->query("SET NAMES 'utf8'");
+            $laczenie-> query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
             return $laczenie;       
         }
         else { return false; }
@@ -37,4 +37,21 @@ class DataBaseclass
      *   Zwraca %2 przypadku braku odpowiednich rekordów.
      *   Zwraca %3 przypadku błędnego zapytania?
      */
+    
+    static public function insertBySQL($SQL)
+    {
+        static $wynik;
+        if($laczenie = self::laczeniezbaza())
+        {
+            $wynik = $laczenie->query($SQL);
+            if(!($wynik)) { return false; } 
+            else { return true; }
+        }
+        else return false;
+    }
+    /*
+     * Zwraca true, w przypadku poprawnego wprowadzenia zapytania, false w przeciwnym
+     */
+    
+    
 }

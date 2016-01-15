@@ -9,6 +9,7 @@ if (isset($_POST['page']))
         $wyswietlona_strona=true;
     } 
 }
+
 if (isset($_POST['send']))
 {
     if ($_POST['send']=="login")
@@ -59,5 +60,21 @@ if (isset($_POST['send']))
                 break;
             }
         }    
+    }
+}
+
+if (isset($_POST['send']))
+{
+    if ($_POST['send']=="rejestracja")
+    {
+        /*if(DataBaseclass::selectBySQL("SELECT * FROM `uzytkownik` WHERE `email` LIKE '".$_POST['email']."'")=="%2")
+                
+                &&(DataBaseclass::selectBySQL()
+        {
+            echo 1;
+        }
+         
+	login SELECT * FROM `uzytkownik` WHERE `Nick` LIKE 'a' 
+	password*/
     }
 }

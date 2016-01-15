@@ -10,8 +10,8 @@ error_reporting(E_ALL);
         if(!$wyswietlona_strona)
         {
             if(file_exists("page/".$_GET['page'].".php")) 
-                { include_once ("page/".$_GET['page'].".php"); } 
-            else { include_once ("page/mainpage.php"); }
+                { include("page/".$_GET['page'].".php"); } 
+            else { include("page/mainpage.php"); }
             $wyswietlona_strona=true;
         }
     }

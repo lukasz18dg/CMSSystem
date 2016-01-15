@@ -1,12 +1,9 @@
 <?php
-
 class Twigclass 
 {
     private static $loader;
     private static $twig;
     private static $template;
-    
-    
     
     static private function KonstruktorTwig()
     {
@@ -28,13 +25,14 @@ class Twigclass
     {
         switch ($plik) 
         {
-            case 'index.tmpl' :
-                return $plik;
-                break;
-            
-            case 'index.php' : 
-                return 'index.tmpl';
-                break;
+            case 'index.tmpl' : return $plik;
+            case 'index.php'  : return 'index.tmpl';
+
+            case 'rejestracja.tmpl' : return 'rejestracja.tmpl';           
+            case 'rejestracja.php'  : return 'rejestracja.tmpl';
+                        
+            case 'strona_bledu.tmpl' : return 'strona_bledu.tmpl';
+            case 'strona_bledu.php'  : return 'strona_bledu.tmpl'; 
         }
         return 0;
     }
