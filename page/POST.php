@@ -63,10 +63,10 @@ if (isset($_POST['send']))
     }
 }
 
-if (isset($_POST['send']))
+/*if (isset($_POST['send']))
 {
     if ($_POST['send']=="rejestracja")
-    {
+    {*/
         /*if(DataBaseclass::selectBySQL("SELECT * FROM `uzytkownik` WHERE `email` LIKE '".$_POST['email']."'")=="%2")
                 
                 &&(DataBaseclass::selectBySQL()
@@ -76,5 +76,5 @@ if (isset($_POST['send']))
          
 	login SELECT * FROM `uzytkownik` WHERE `Nick` LIKE 'a' 
 	password*/
-    }
-}
+    /*}
+}*/
