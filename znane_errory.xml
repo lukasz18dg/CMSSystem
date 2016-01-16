@@ -1,0 +1,14 @@
+<xml>
+    <znane_erory>
+        <a1>
+            <gdzie>POST - odpowiadajacy za sprawdzenie czy juz jest email i login w bazie, blad wystepuje w negatywnych warunkach</gdzie>
+            <objawy>Wyświetlenie poprawnego szablonu plus próba wyświetlenia następnego</objawy>
+            <mozliwa_przyczyna>Gdzieś się ładują dwa templety. Nie wiem gdzie. Próbowałem w POST, tam nie.</mozliwa_przyczyna>
+        </a1>
+        <a2>
+            <gdzie></gdzie>
+            <objawy></objawy>
+            <mozliwa_przyczyna></mozliwa_przyczyna>
+        </a2>
+    </znane_erory>
+</xml>

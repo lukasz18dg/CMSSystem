@@ -22,27 +22,9 @@ if (isset($_POST['send']))
         */
         switch ($wynik)
         {
-            case '%1' : 
-            {
-                Twigclass::WczytajTemplate('index.php',array(
-                    'komunikat_negatywny' => 'Problem z połaczeniem z bazą. Skontaktuj się z administratorem strony.',
-                    'wyswietl_komunikat_negatywny' => '1'));
-                break;
-            }
-            case '%2' : 
-            {
-                Twigclass::WczytajTemplate('index.php',array(
-                    'komunikat_negatywny' => 'Podano błędne login i hasło.',
-                    'wyswietl_komunikat_negatywny' => '1'));
-                break;
-            }            
-            case '%3' : 
-            {
-                Twigclass::WczytajTemplate('index.php',array(
-                    'komunikat_negatywny' => 'Wystąpił błąd 590. Proszę o ponowne zalogowowanie do serwisu.',
-                    'wyswietl_komunikat_negatywny' => '1'));
-                break;
-            }
+            case '%1' : { Twigclass::WyswietlajWidok(2); break; }
+            case '%2' : { Twigclass::WyswietlajWidok(3); break; }            
+            case '%3' : { Twigclass::WyswietlajWidok(4); break; } 
             default :
             {
                 foreach ($wynik as $i)
@@ -53,28 +35,38 @@ if (isset($_POST['send']))
                     $_SESSION['zalogowany']=true;
                     $_SESSION['wyswietl_komunikat_pozytywny']=true;
                 }
-                Twigclass::WczytajTemplate('index.php',array(
-                    'komunikat_pozytywny' => 'Zalogowano pomyślnie!.',
-                    'wyswietl_komunikat_pozytywny' => '1',
-                    'zalogowany'=>'1'));
+                Twigclass::WyswietlajWidok(5);
                 break;
             }
         }    
     }
 }
 
-/*if (isset($_POST['send']))
+if (isset($_POST['send']))
 {
     if ($_POST['send']=="rejestracja")
-    {*/
-        /*if(DataBaseclass::selectBySQL("SELECT * FROM `uzytkownik` WHERE `email` LIKE '".$_POST['email']."'")=="%2")
-                
-                &&(DataBaseclass::selectBySQL()
-        {
-            echo 1;
+    {
+        if(DataBaseclass::selectBySQL("SELECT * FROM `uzytkownik` WHERE `email` LIKE '".$_POST['email']."'")=="%2")
+        {      
+            if(DataBaseclass::selectBySQL('SELECT * FROM `uzytkownik` WHERE `Nick` LIKE "'.$_POST['login'].'";')=="%2")
+            {
+                //$a=DataBaseclass::insertBySQL("INSERT INTO `uzytkownik` (`ID`, `Nick`, `Haslo`, `email`, `Uprawnienia`, `Aktywowane`) VALUES (NULL, 'gł', 'egł', 'g', '0', '5')");
+                echo 1;
+            }
+            else
+            {
+                Twigclass::WyswietlajWidok(8,array('nazwa1' => 'POST_EMAIL',
+                    'nazwa2' => 'POST_LOGIN',
+                    'POST_EMAIL', $_POST['email'],
+                    'POST_LOGIN', $_POST['login']));    
+            }
         }
-         
-	login SELECT * FROM `uzytkownik` WHERE `Nick` LIKE 'a' 
-	password*/
-    /*}
-}*/
+        else
+        {
+            Twigclass::WyswietlajWidok(8,array('nazwa1' => 'POST_EMAIL',
+                    'nazwa2' => 'POST_LOGIN',
+                    'POST_EMAIL' => $_POST['email'],
+                    'POST_LOGIN' => $_POST['login'])); /* */
+        }
+    }
+}

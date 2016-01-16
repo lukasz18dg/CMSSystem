@@ -3,15 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/page/POST.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/page/mainpage.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/index.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/tabelabledow.xhtml</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/class/Twigclass.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/class/DataBaseclass.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/config.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/class/Mailclass.php</file>
-            <file>file:/C:/Programy/xaamp/htdocs/CMSSystem/page/rejestracja.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/HTML2/js/ajax.js</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/rejestracja.tmpl</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/POST.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/head.tmpl</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/ajax.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/config.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/class/DataBaseclass.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/index.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/mainpage.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/GET.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/rejestracja.php</file>
         </group>
     </open-files>
 </project-private>

@@ -38,6 +38,29 @@ class DataBaseclass
      *   Zwraca %3 przypadku błędnego zapytania?
      */
     
+    static public function selectBySQLCOUNT($SQL)
+    { 
+        if($laczenie = self::laczeniezbaza())
+        {
+            $laczenie->real_escape_string($SQL);
+            $wynik = $laczenie->query($SQL);
+            if(!$wynik) { return '%2'; } 
+            else 
+            {
+                $tablicawynikow = Array(); 
+                while(($row = $wynik->fetch_array(MYSQLI_ASSOC)) !== NULL) 
+                { $tablicawynikow[] = $row; } 
+            }
+            mysqli_close($laczenie);
+            return count($tablicawynikow);
+        }
+        else { return '%1'; } 
+    }
+    /*
+     * ^ Zwraca %1 przypadku nie powodzenia połączenia
+     *   Zwraca %2 przypadku błędnego zapytania?
+     */
+    
     static public function insertBySQL($SQL)
     {
         static $wynik;
