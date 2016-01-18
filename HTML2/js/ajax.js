@@ -20,7 +20,6 @@ function zmiania_widocznosci(idelementu,id1,id2)
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             var x= xmlhttp.responseText;
-            
             switch(x)
             {
                 case '10':
@@ -44,7 +43,6 @@ function zmiania_widocznosci(idelementu,id1,id2)
             }
         }
     }
-    alert("page/ajax.php?funkcja=visible&"+idelementu+"="+document.getElementById(idelementu).value);
     xmlhttp.open("GET","page/ajax.php?funkcja=visible&"+idelementu+"="+document.getElementById(idelementu).value);
     xmlhttp.send();
 

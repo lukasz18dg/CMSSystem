@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang = "pl">
+{% include 'head.twig' %}	
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+        {% include 'logo_i_navbar.twig' %}
+        {% include 'komunikat_pozytywny.twig' %}
+        {% include 'komunikat_negatywny.twig' %}
+        {% if  poprawna_rejestracja is not defined %}
+            Podaj co pamietasz: </br>
+            <form role="form" action="index.php?page=przypominanie_hasla" method="post" id="form1">
+                E-mail:
+                {% if POST_EMAIL is defined %}
+                <input type="text" value="{{ POST_EMAIL }}" name="email" id="email" >
+                {% else %}
+                <input type="text" value="" name="email" id="email" >
+                {% endif %}
+                </br>
+
+                Login:
+                {% if POST_LOGIN is defined %}
+                <input type="text" value="{{ POST_LOGIN }}" name="login" id="login" >
+                {% else %}
+                <input type="text" value="" name="login" id="login">
+                {% endif %}
+                </br>
+
+                <input type="hidden" name="send" value="przypomianie_hasla">
+                <button type="submit" class="btn btn-primary btn-block" onclick="scmw('form1','v1','v3');">
+                <span class="glyphicon glyphicon-ok"> Wyślij</span></button>
+        </form>
+        {%endif %}
+
+    </body>
+</html>

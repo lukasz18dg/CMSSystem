@@ -67,6 +67,7 @@ class DataBaseclass
         if($laczenie = self::laczeniezbaza())
         {
             $wynik = $laczenie->query($SQL);
+            mysqli_close($laczenie);
             if(!($wynik)) { return false; } 
             else { return true; }
         }
@@ -76,5 +77,16 @@ class DataBaseclass
      * Zwraca true, w przypadku poprawnego wprowadzenia zapytania, false w przeciwnym
      */
     
-    
+    static public function updateTable($SQL) 
+    {
+        static $wynik;
+        if($laczenie = self::laczeniezbaza())
+        {
+            $wynik = $laczenie->query($SQL);
+            mysqli_close($laczenie);
+            if($wynik) { return true; }
+            else { return false; }
+        }
+        else { return false; }
+    } 
 }
