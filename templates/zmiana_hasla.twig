@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang = "pl">
+{% include 'head.twig' %}
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
+		{% include 'logo_i_navbar.twig' %}
+		{% include 'komunikat_pozytywny.twig' %}
+		{% include 'komunikat_negatywny.twig' %}
+                {% if  poprawna__zmiana_hasla is not defined %}
+                    <form role="form" action="index.php" method="post" id="form1">
+                        Podaj nowe hasło: <input type="password" name="password"> </br>
+                        <input type="hidden" name="send" value="zmiana_hasla">
+                        <input type="hidden" name="ID" value="{% if  id is defined %}{{ id }}{% endif %}{% if  id is not defined %}0{% endif %}">
+                        <input type="hidden" name="kod_resetowania_hasla" value="{% if  kod_resetowania_hasla is defined %}{{ kod_resetowania_hasla }}{% endif %}{% if  kod_resetowania_hasla is not defined %}0{% endif %}">
+                        <button type="submit" class="btn btn-primary btn-block">
+                        <span class="glyphicon glyphicon-ok"> Wyślij</span></button>
+                    </form>
+                {% endif %}
+		
+	</body>
+</html>

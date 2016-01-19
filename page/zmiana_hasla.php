@@ -1,8 +1,8 @@
 <?php
+if(isset($_GET['ID'])&&isset($_GET['kod_resetowania_hasla']))
+{
+    Twigclass::WyswietlajWidok(17,  array('id' => $_GET['ID'], 'kod_resetowania_hasla' => $_GET['kod_resetowania_hasla']));
+}
+else { Twigclass::WyswietlajWidok(10); }
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+//localhost/index.php?page=zmiana_hasla&ID=51&kod_resetowania_hasla=874450683\

@@ -44,6 +44,9 @@ class Twigclass
                 
             case 'przypominanie_hasla.twig' : return 'przypominanie_hasla.twig';
             case 'przypominanie_hasla.php' : return 'przypominanie_hasla.twig';
+                
+            case 'zmiana_hasla.twig' : return 'zmiana_hasla.twig';
+            case 'zmiana_hasla.php' : return 'zmiana_hasla.twig';
         }
         return 0;
     }
@@ -150,7 +153,6 @@ class Twigclass
                 
                 case 15:
                     Twigclass::WczytajTemplate('przypominanie_hasla.php',array_merge($tablica,array(
-                        'komunikat_negatywny' => 'Oba pola są puste. Podaj ponownie.',
                         'wyswietl_komunikat_negatywny' => '1',
                         $tablica['nazwa1'] => $tablica[$tablica['nazwa1']],
                         $tablica['nazwa2'] => $tablica[$tablica['nazwa2']])));
@@ -165,8 +167,11 @@ class Twigclass
                     self::$wyswietlona_strona=true;
                     break;
                 
+                case 17:
+                    Twigclass::WczytajTemplate('zmiana_hasla.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;  
             }
         }
-    }
-    
+    }   
 }

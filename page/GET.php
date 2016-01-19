@@ -3,8 +3,6 @@ if(isset($_GET['page']))
 {
     switch($_GET['page'])
     {
-        case "ajax" :  include_once 'page/ajax.php'; break;
-        case "aktywacja" : include_once 'page/aktywacja.php'; break;
         default :
             if(file_exists("page/".$_GET['page'].".php"))
             {

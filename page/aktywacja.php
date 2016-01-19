@@ -1,6 +1,5 @@
 <?php
-
-If(isset($_GET['ID'])&&isset($_GET['Kod_aktywacji']))
+if(isset($_GET['ID'])&&isset($_GET['Kod_aktywacji']))
 {
     $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID,Kod_aktywacji FROM `uzytkownik` WHERE `ID` = '.$_GET['ID'].' AND `Kod_aktywacji` LIKE "'.$_GET['Kod_aktywacji'].'"' );
     if($wynik==1)
