@@ -119,33 +119,150 @@ if (isset($_POST['send']))
         case 'zmiana_hasla':
             if($_POST['password']!="")
             {
-                $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `ID` = '.$_POST['ID'].' AND `kod_resetowania_hasla` LIKE "'.$_POST['kod_resetowania_hasla'].'"');
-                if($wynik==1)
+                if(($_POST['ID']!=0)&&($_POST['kod_resetowania_hasla']!=0))
                 {
-                    $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'",`kod_resetowania_hasla`=0 WHERE `ID`='.$_POST['ID'].';');
-                    if($wynik)
+                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `ID` = '.$_POST['ID'].' AND `kod_resetowania_hasla` LIKE "'.$_POST['kod_resetowania_hasla'].'"');
+                    if($wynik==1)
+                    {
+                        $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'",`kod_resetowania_hasla`=0 WHERE `ID`='.$_POST['ID'].';');
+                        if($wynik)
+                        {
+                            Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                            Twigclass::WyswietlajWidok(17,array('komunikat_pozytywny' => 'Pomyślnie zmieniono hasło. Teraz może się zalogować. Przekierowanie nastąpi za 1 min.',
+                            'wyswietl_komunikat_pozytywny' => '1',
+                            'poprawna__zmiana_hasla' => '1'));
+                        } 
+                    }
+                    else { Twigclass::WyswietlajWidok(17,array('komunikat_negatywny' => 'Nie znaleziono, takiej prośby o zmianę o hasło. Skopiuj/wpisz adres ponownie.',
+                            'wyswietl_komunikat_negatywny' => '1',
+                            'id' => $_POST['ID'],
+                            'kod_resetowania_hasla' => $_POST['kod_resetowania_hasla'])); }
+                }
+                else 
+                {
+                    if($_SESSION['zalogowany'])
+                    {
+                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'" AND `email` LIKE "'.$_SESSION['Email'].'"');
+                        if($wynik==1)
+                        {
+                            $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'" WHERE `Nick`="'.$_SESSION['Nick'].'";');
+                            if($wynik)
+                            {
+                                Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                                Twigclass::WyswietlajWidok(17,array('komunikat_pozytywny' => 'Pomyślnie zmieniono hasło. Teraz możesz się wylogować, aby zalogować z nowym hasłem. Przekierowanie nastąpi za 1 min.',
+                                    'wyswietl_komunikat_pozytywny' => '1',
+                                    'poprawna__zmiana_hasla' => '1'));
+                            }
+                        }
+                    }
+                    else
                     {
                         Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
-                        Twigclass::WyswietlajWidok(17,array('komunikat_pozytywny' => 'Pomyślnie zmieniono hasło. Teraz może się zalogować. Przekierowanie nastąpi za 1 min.',
-                        'wyswietl_komunikat_pozytywny' => '1',
-                        'poprawna__zmiana_hasla' => '1'));
-                    } 
+                        Twigclass::WyswietlajWidok(17,array('komunikat_negatywny' => 'Jesteś nie uprawniony do zmiany hasła. Przekierowanie nastąpi za 1 min.',
+                            'wyswietl_komunikat_negatywny' => '1',
+                            'poprawna__zmiana_hasla' => '1'));
+                    }
                 }
-                else { Twigclass::WyswietlajWidok(17,array('komunikat_negatywny' => 'Nie znaleziono, takiej prośby o zmianę o hasło. Skopiuj/wpisz adres ponownie.',
-                        'wyswietl_komunikat_negatywny' => '1',
-                        'id' => $_POST['ID'],
-                        'kod_resetowania_hasla' => $_POST['kod_resetowania_hasla'])); }
             }
             else
             {
-                 Twigclass::WyswietlajWidok(17,array('komunikat_negatywny' => 'Podane hasło jest puste.',
+                Twigclass::WyswietlajWidok(17,array('komunikat_negatywny' => 'Podane hasło jest puste.',
                         'wyswietl_komunikat_negatywny' => '1', 
                         'id' => $_POST['ID'],
                         'kod_resetowania_hasla' => $_POST['kod_resetowania_hasla'])); 
             }
-            
-
-        break;
+            break;
+        
+        case 'zmiana_loginu':
+            /*Zablokować skryptem*/
+            if($_POST['login']!="")
+            {
+                if($_SESSION['zalogowany'])
+                {
+                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'" AND `email` LIKE "'.$_SESSION['Email'].'"');
+                    if($wynik==1)
+                    {
+                        /*Zamienic na ajaxa*/
+                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_POST['login'].'"');
+                        if($wynik==0)
+                        {
+                            $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Nick`="'.$_POST['login'].'" WHERE `email`="'.$_SESSION['Email'].'";');
+                            if($wynik)
+                            {
+                                Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                                Twigclass::WyswietlajWidok(18,array('komunikat_pozytywny' => 'Pomyślnie zmieniono login. Teraz możesz się wylogować, aby zalogować z nowym loginem. Przekierowanie nastąpi za 1 min.',
+                                    'wyswietl_komunikat_pozytywny' => '1',
+                                    'poprawna__zmiana_loginu' => '1'));
+                            }
+                        }
+                        else
+                        {
+                            Twigclass::WyswietlajWidok(18,array('komunikat_negatywny' => 'Użytkownik o takim loginie już istnieje.',
+                                'wyswietl_komunikat_negatywny' => '1'));
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                    Twigclass::WyswietlajWidok(18,array('komunikat_negatywny' => 'Jesteś nie uprawniony do zmiany hasła. Przekierowanie nastąpi za 1 min.',
+                        'wyswietl_komunikat_negatywny' => '1'));
+                }
+            }
+            else 
+            {
+                Twigclass::WyswietlajWidok(18,array('komunikat_negatywny' => 'Podany login jest pusty.',
+                        'wyswietl_komunikat_negatywny' => '1')); 
+            }
+            break;
+        case 'zmiana_emailu':
+            /*Zablokować skryptem*/            
+            if($_POST['email']!="")
+            {
+                if($_SESSION['zalogowany'])
+                {         
+                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'"');
+                    if($wynik==1)
+                    {
+                        
+                        
+                        /*Zamienic na ajaxa*/
+                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `email` = "'.$_POST['email'].'"');
+                        if($wynik==0)
+                        {                            
+                            $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `email`="'.$_POST['email'].'" WHERE `Nick`="'.$_SESSION['Nick'].'";');
+                            if($wynik)
+                            {
+                                Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                                Twigclass::WyswietlajWidok(19,array('komunikat_pozytywny' => 'Pomyślnie zmieniono email. Teraz możesz się wylogować, aby zalogować z nowym emailem. Przekierowanie nastąpi za 1 min.',
+                                    'wyswietl_komunikat_pozytywny' => '1',
+                                    'poprawna__zmiana_emailu' => '1'));
+                            }
+                        }
+                        else
+                        {
+                            Twigclass::WyswietlajWidok(19,array('komunikat_negatywny' => 'Użytkownik o takim emailu już istnieje.',
+                                'wyswietl_komunikat_negatywny' => '1'));
+                        }
+                        
+                    }
+                    echo "f";
+                    exit();
+                }
+                else
+                {
+                    Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                    Twigclass::WyswietlajWidok(19,array('komunikat_negatywny' => 'Jesteś nie uprawniony do zmiany loginu. Przekierowanie nastąpi za 1 min.',
+                        'wyswietl_komunikat_negatywny' => '1'));
+                }
+            }
+            else 
+            {
+                Twigclass::WyswietlajWidok(19,array('komunikat_negatywny' => 'Podany email jest pusty.',
+                        'wyswietl_komunikat_negatywny' => '1')); 
+            }
+            break;
     }
 }
 

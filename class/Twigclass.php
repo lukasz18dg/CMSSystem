@@ -39,14 +39,23 @@ class Twigclass
             case 'nic.twig' : return 'nic.twig';
             case 'nic.php'  : return 'nic.twig'; 
                 
-            case 'poprawnie_aktywowanie.twig' : return 'poprawnie_aktywowanie.twig';
+            case 'poprawnie_aktywowanie.twig'   : return 'poprawnie_aktywowanie.twig';
             case 'poprawnie_aktywowanienic.php' : return 'poprawnie_aktywowanie.twig';
                 
             case 'przypominanie_hasla.twig' : return 'przypominanie_hasla.twig';
-            case 'przypominanie_hasla.php' : return 'przypominanie_hasla.twig';
+            case 'przypominanie_hasla.php'  : return 'przypominanie_hasla.twig';
                 
             case 'zmiana_hasla.twig' : return 'zmiana_hasla.twig';
-            case 'zmiana_hasla.php' : return 'zmiana_hasla.twig';
+            case 'zmiana_hasla.php'  : return 'zmiana_hasla.twig';
+                
+            case 'zmiana_loginu.twig' : return 'zmiana_loginu.twig';
+            case 'zmiana_loginu.php'  : return 'zmiana_loginu.twig';
+                
+            case 'zmiana_emailu.twig' : return 'zmiana_emailu.twig';
+            case 'zmiana_emailu.php'  : return 'zmiana_emailu.twig';
+                
+            case 'wyloguj.twig' : return 'wyloguj.twig';
+            case 'wyloguj.php'  : return 'wyloguj.twig';
         }
         return 0;
     }
@@ -170,7 +179,22 @@ class Twigclass
                 case 17:
                     Twigclass::WczytajTemplate('zmiana_hasla.php',array_merge($tablica));
                     self::$wyswietlona_strona=true;
-                    break;  
+                    break;
+                
+                case 18:
+                    Twigclass::WczytajTemplate('zmiana_loginu.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;
+                
+                case 19:
+                    Twigclass::WczytajTemplate('zmiana_emailu.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;
+                
+                case 20:
+                    Twigclass::WczytajTemplate('wyloguj.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;
             }
         }
     }   

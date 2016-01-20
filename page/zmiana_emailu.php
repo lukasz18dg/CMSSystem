@@ -1,0 +1,1 @@
+<?php Twigclass::WyswietlajWidok(19);

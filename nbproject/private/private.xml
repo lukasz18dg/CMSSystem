@@ -3,17 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/poprawnie_aktywowanie.twig</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/aktywacja.php</file>
             <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/zmiana_hasla.php</file>
             <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/POST.php</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/przypominanie_hasla.php</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/class/Mailclass.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/logo_i_navbar.twig</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/zmiana_loginu.twig</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/zalogowany.twig</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/zmiana_hasla.twig</file>
             <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/class/Twigclass.php</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/index.php</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/class/DataBaseclass.php</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/rejestracja.twig</file>
-            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/templates/przypominanie_hasla.twig</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/config.php</file>
+            <file>file:/C:/Programy/Apache24/htdocs/CMSSystem/page/zmiana_loginu.php</file>
         </group>
     </open-files>
 </project-private>
