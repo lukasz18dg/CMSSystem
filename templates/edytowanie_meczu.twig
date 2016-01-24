@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang = "pl">
+{% include 'head.twig' %}
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
+		{% include 'logo_i_navbar.twig' %}
+		{% include 'komunikat_pozytywny.twig' %}
+		{% include 'komunikat_negatywny.twig' %}
+                {% if poprane_zeedytowany is defined %}
+                    </br>
+                {% else %}
+                    {% if wybrane is defined %}
+                        {% if  poprawne_dodanie_meczu is not defined %}
+                            <form role="form" action="index.php?page=edytowanie_meczu&wybor={{ ID }}" method="post" id="form1">
+                                Sezon:
+                                {% if SEZON is defined %}
+                                    <input type="text" name="sezon" value="{{ SEZON }}">
+                                {% else %}
+                                    <input type="text" name="sezon" value="">
+                                {% endif %}
+
+
+                                Drużyna A:
+                                <select name="druzynaA" value="{{ DRUZYNAA }}">
+                                    {% for value in array_path %}
+                                        {% for test in value %}
+                                            <option value="{{ test }}">{{ test }}</option> 
+                                        {% endfor %}
+                                    {% endfor %}
+                                </select>
+
+                                Drużyna B:
+                                <select name="druzynaB" value="{{ DRUZYNAB }}">
+                                    {% for value in array_path %}
+                                        {% for test in value %}
+                                            <option value="{{ test }}">{{ test }}</option> 
+                                        {% endfor %}
+                                    {% endfor %}
+                                </select>
+
+                                Wynik A:
+                                {% if WYNIK_A is defined %}
+                                <input type="text" value="{{ WYNIK_A }}" name="wynik_a" >
+                                {% else %}
+                                <input type="text" value="" name="wynik_a" id="sezon">
+                                {% endif %}
+
+                                Wynik B:
+                                {% if WYNIK_B is defined %}
+                                <input type="text" value="{{ WYNIK_B }}" name="wynik_b" >
+                                {% else %}
+                                <input type="text" value="" name="wynik_b">
+                                {% endif %}
+
+                                Data 
+                                RRRR-MM-DD 
+                                {% if DATA is defined %}
+                                    <input type="text" name="data_W" value="{{ DATA }}">
+                                {% else %}
+                                    <input type="text" name="data_W" value="">
+                                {% endif %}
+
+                                <input type="hidden" name="ID" value="{{ ID }}">
+                                <input type="hidden" name="send" value="edytowanie_meczu">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                <span class="glyphicon glyphicon-ok"> Wyślij</span></button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                    {% if wybrane is not defined %}
+                        <table border="1">
+                            <tr><td>Sezon</td><td>Druzyna_A</td><td>Druzyna_B</td>
+                                <td>Wynik_A</td><td>Wynik_B</td><td>Data</td><td>Link do edycji meczu</td></tr>
+                        {% for mecz in wyniki_meczu %}
+                            <tr>
+                                <td>{{ mecz.Sezon }}</td> <td>{{ mecz.Druzyna_A }}</td> <td>{{ mecz.Druzyna_B }}</td> 
+                                <td>{{ mecz.Wynik_A }}</td> <td>{{ mecz.Wynik_B }}</td> <td>{{ mecz.Data }}</td>
+                                <td><a href="index.php?page=edytowanie_meczu&wybor={{ mecz.ID }}">Link do edycji</a></td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    {% endif %}
+                {% endif %}
+	</body>
+</html>

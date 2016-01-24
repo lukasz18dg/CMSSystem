@@ -56,6 +56,15 @@ class Twigclass
                 
             case 'wyloguj.twig' : return 'wyloguj.twig';
             case 'wyloguj.php'  : return 'wyloguj.twig';
+                
+            case 'dodawanie_meczu.twig' : return 'dodawanie_meczu.twig';
+            case 'dodawanie_meczu.php'  : return 'dodawanie_meczu.twig';
+                
+            case 'edytowanie_meczu.twig' : return 'edytowanie_meczu.twig';
+            case 'edytowanie_meczu.php'  : return 'edytowanie_meczu.twig';
+                
+            case 'koniec_kolejki.twig' : return 'koniec_kolejki.twig';
+            case 'koniec_kolejki.php'  : return 'koniec_kolejki.twig';
         }
         return 0;
     }
@@ -193,6 +202,21 @@ class Twigclass
                 
                 case 20:
                     Twigclass::WczytajTemplate('wyloguj.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;
+                
+                case 21:
+                    Twigclass::WczytajTemplate('dodawanie_meczu.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;
+                
+                case 22:
+                    Twigclass::WczytajTemplate('edytowanie_meczu.php',array_merge($tablica));
+                    self::$wyswietlona_strona=true;
+                    break;
+                
+                case 23:
+                    Twigclass::WczytajTemplate('koniec_kolejki.php',array_merge($tablica));
                     self::$wyswietlona_strona=true;
                     break;
             }

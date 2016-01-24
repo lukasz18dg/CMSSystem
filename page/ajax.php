@@ -5,7 +5,7 @@ function cjjwb($a1,$a2)
 /*czy jest juz w bazie*/
 {
     $a1=$a1=='email'?'email':'Nick';
-    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT `'.$a1.'` FROM uzytkownik WHERE '.$a1.'=\''.$a2.'\';');
+    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT `'.$a1.'` FROM Uzytkownik WHERE '.$a1.'=\''.$a2.'\';');
     if($wynik) { echo "01"; } else { echo "10"; }
 }
 

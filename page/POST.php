@@ -8,15 +8,15 @@ if (isset($_POST['page']))
 
 function poprawnosc_loginu($pole_w_bazie)
 {
-    $SQL=($pole_w_bazie=="email")?'SELECT `email` FROM `uzytkownik` WHERE `email`="'.$_POST['email'].'";':'SELECT `email`, `Nick` FROM `uzytkownik` WHERE `Nick`="'.$_POST['login'].'";';
+    $SQL=($pole_w_bazie=="email")?'SELECT `email` FROM `Uzytkownik` WHERE `email`="'.$_POST['email'].'";':'SELECT `email`, `Nick` FROM `Uzytkownik` WHERE `Nick`="'.$_POST['login'].'";';
     $wynik=DataBaseclass::selectBySQLCOUNT($SQL);
     if($wynik==1)
     {
-        $SQL=($pole_w_bazie=="email")?'SELECT `ID`, `email` FROM `uzytkownik` WHERE `email`="'.$_POST['email'].'";':'SELECT `ID`, `email`, `Nick` FROM `uzytkownik` WHERE `Nick`="'.$_POST['login'].'";';
+        $SQL=($pole_w_bazie=="email")?'SELECT `ID`, `email` FROM `Uzytkownik` WHERE `email`="'.$_POST['email'].'";':'SELECT `ID`, `email`, `Nick` FROM `Uzytkownik` WHERE `Nick`="'.$_POST['login'].'";';
         $wynik=DataBaseclass::selectBySQL($SQL);
         foreach ($wynik as $i) { $temporary["ID"]=$i["ID"]; $temporary["email"]=$i["email"]; }
         $sekretny_kod=rand(1,999999999);
-        $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `kod_resetowania_hasla`="'.$sekretny_kod.'" WHERE `ID`='.$temporary["ID"].' AND `email`="'.$temporary["email"].'";');
+        $wynik=DataBaseclass::updateTable('UPDATE Uzytkownik SET `kod_resetowania_hasla`="'.$sekretny_kod.'" WHERE `ID`='.$temporary["ID"].' AND `email`="'.$temporary["email"].'";');
         if($wynik)
         {
             //kod_resetowania_hasla
@@ -61,11 +61,11 @@ if (isset($_POST['send']))
             break;
             
         case "rejestracja":
-            if((DataBaseclass::selectBySQL("SELECT * FROM `uzytkownik` WHERE `email` LIKE '".$_POST['email']."'")=="%2")
-                ||(DataBaseclass::selectBySQL('SELECT * FROM `uzytkownik` WHERE `Nick` LIKE "'.$_POST['login'].'";')=="%2"))
+            if((DataBaseclass::selectBySQL("SELECT * FROM `Uzytkownik` WHERE `email` LIKE '".$_POST['email']."'")=="%2")
+                ||(DataBaseclass::selectBySQL('SELECT * FROM `Uzytkownik` WHERE `Nick` LIKE "'.$_POST['login'].'";')=="%2"))
             {               
-                DataBaseclass::insertBySQL('INSERT INTO `uzytkownik` (`Nick`,`Haslo`,`email`,`Uprawnienia`,`Aktywowane`,`Kod_aktywacji`,`kod_resetowania_hasla`) VALUES ("'.$_POST['login'].'", "'.sha1(md5($_POST['password'])).'", "'.$_POST['email'].'", "2", "0", "'.rand(1,999999999).'", "0")');
-                $wynik=DataBaseclass::selectBySQL('SELECT `ID`,`Kod_aktywacji` FROM uzytkownik WHERE  `Nick`="'.$_POST['login'].'"');
+                DataBaseclass::insertBySQL('INSERT INTO `Uzytkownik` (`Nick`,`Haslo`,`email`,`Uprawnienia`,`Aktywowane`,`Kod_aktywacji`,`kod_resetowania_hasla`) VALUES ("'.$_POST['login'].'", "'.sha1(md5($_POST['password'])).'", "'.$_POST['email'].'", "2", "0", "'.rand(1,999999999).'", "0")');
+                $wynik=DataBaseclass::selectBySQL('SELECT `ID`,`Kod_aktywacji` FROM Uzytkownik WHERE  `Nick`="'.$_POST['login'].'"');
                 switch ($wynik)
                 {
                     case '%1' : { Twigclass::WyswietlajWidok(2); break; }            
@@ -121,10 +121,10 @@ if (isset($_POST['send']))
             {
                 if(($_POST['ID']!=0)&&($_POST['kod_resetowania_hasla']!=0))
                 {
-                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `ID` = '.$_POST['ID'].' AND `kod_resetowania_hasla` LIKE "'.$_POST['kod_resetowania_hasla'].'"');
+                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `Uzytkownik` WHERE `ID` = '.$_POST['ID'].' AND `kod_resetowania_hasla` LIKE "'.$_POST['kod_resetowania_hasla'].'"');
                     if($wynik==1)
                     {
-                        $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'",`kod_resetowania_hasla`=0 WHERE `ID`='.$_POST['ID'].';');
+                        $wynik=DataBaseclass::updateTable('UPDATE Uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'",`kod_resetowania_hasla`=0 WHERE `ID`='.$_POST['ID'].';');
                         if($wynik)
                         {
                             Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
@@ -142,10 +142,10 @@ if (isset($_POST['send']))
                 {
                     if($_SESSION['zalogowany'])
                     {
-                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'" AND `email` LIKE "'.$_SESSION['Email'].'"');
+                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `Uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'" AND `email` LIKE "'.$_SESSION['Email'].'"');
                         if($wynik==1)
                         {
-                            $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'" WHERE `Nick`="'.$_SESSION['Nick'].'";');
+                            $wynik=DataBaseclass::updateTable('UPDATE Uzytkownik SET `Haslo`="'.sha1(md5($_POST['password'])).'" WHERE `Nick`="'.$_SESSION['Nick'].'";');
                             if($wynik)
                             {
                                 Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
@@ -179,14 +179,14 @@ if (isset($_POST['send']))
             {
                 if($_SESSION['zalogowany'])
                 {
-                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'" AND `email` LIKE "'.$_SESSION['Email'].'"');
+                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `Uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'" AND `email` LIKE "'.$_SESSION['Email'].'"');
                     if($wynik==1)
                     {
                         /*Zamienic na ajaxa*/
-                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_POST['login'].'"');
+                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `Uzytkownik` WHERE `Nick` = "'.$_POST['login'].'"');
                         if($wynik==0)
                         {
-                            $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `Nick`="'.$_POST['login'].'" WHERE `email`="'.$_SESSION['Email'].'";');
+                            $wynik=DataBaseclass::updateTable('UPDATE Uzytkownik SET `Nick`="'.$_POST['login'].'" WHERE `email`="'.$_SESSION['Email'].'";');
                             if($wynik)
                             {
                                 Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
@@ -222,16 +222,16 @@ if (isset($_POST['send']))
             {
                 if($_SESSION['zalogowany'])
                 {         
-                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'"');
+                    $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `Uzytkownik` WHERE `Nick` = "'.$_SESSION['Nick'].'"');
                     if($wynik==1)
                     {
                         
                         
                         /*Zamienic na ajaxa*/
-                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `uzytkownik` WHERE `email` = "'.$_POST['email'].'"');
+                        $wynik=DataBaseclass::selectBySQLCOUNT('SELECT ID FROM `Uzytkownik` WHERE `email` = "'.$_POST['email'].'"');
                         if($wynik==0)
                         {                            
-                            $wynik=DataBaseclass::updateTable('UPDATE uzytkownik SET `email`="'.$_POST['email'].'" WHERE `Nick`="'.$_SESSION['Nick'].'";');
+                            $wynik=DataBaseclass::updateTable('UPDATE Uzytkownik SET `email`="'.$_POST['email'].'" WHERE `Nick`="'.$_SESSION['Nick'].'";');
                             if($wynik)
                             {
                                 Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
@@ -263,6 +263,154 @@ if (isset($_POST['send']))
                         'wyswietl_komunikat_negatywny' => '1')); 
             }
             break;
+        
+        case 'dodawanie_meczu':
+        {
+            $wyniki=DataBaseclass::selectBySQL('SELECT `nazwa` FROM `druzyna`');
+
+            if( ($_POST['sezon']!="") AND ($_POST['data_W']!="") )
+            {
+                if($_POST['druzynaA']!=$_POST['druzynaB'])
+                {
+                    if(($_POST['wynik_a']=="" && $_POST['wynik_b']=="")||($_POST['wynik_a']!="" && $_POST['wynik_b']!=""))
+                    {
+                        $wynik=DataBaseclass::selectBySQL('SELECT `druzyna` FROM `druzyna` WHERE `nazwa`="'.$_POST['druzynaA'].'";');
+                        foreach ($wynik as $i) { $_temporary["iddruzynaA"]=$i["druzyna"]; }
+                        $wynik=DataBaseclass::selectBySQL('SELECT `druzyna` FROM `druzyna` WHERE `nazwa`="'.$_POST['druzynaB'].'";');
+                        foreach ($wynik as $i) { $_temporary["iddruzynaB"]=$i["druzyna"]; }
+                        /*Sprawdzic czy juz istenieja takie mecze*/
+                        DataBaseclass::insertBySQL('INSERT INTO `wynik`(`Sezon`, `Druzyna_A`, `Druzyna_B`, `Wynik_A`, `Wynik_B`, `Data`) VALUES ("'.$_POST['sezon'].'","'.$_temporary["iddruzynaA"].'","'.$_temporary["iddruzynaB"].'", '.(($_POST['wynik_a']=="")?'NULL':'"'.$_POST['wynik_a'].'"').', '.(($_POST['wynik_b']=="")?'NULL':'"'.$_POST['wynik_b'].'"').', "'.$_POST['data_W'].'");');
+                        Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                        Twigclass::WyswietlajWidok(21,array('komunikat_pozytywny' => 'Pomyślnie dodano mecz. Przekierowanie nastąpi za 1 min.',
+                                    'wyswietl_komunikat_pozytywny' => '1',
+                                    'poprawne_dodanie_meczu' => '1'));
+                    }
+                    else
+                    {
+                        Twigclass::WyswietlajWidok(21,array('array_path'=>$wyniki,
+                            'SEZON'=>$_POST['sezon'],
+                            'WYNIK_A'=>$_POST['wynik_a'],
+                            'WYNIK_B'=>$_POST['wynik_b'],
+                            'DATA'=>$_POST['data_W'],
+                            'komunikat_negatywny' => 'Albo puste wyniki, albo pełne wyniki.',
+                            'wyswietl_komunikat_negatywny' => '1'));
+                    }
+                }
+                else
+                {
+                    Twigclass::WyswietlajWidok(21,array('array_path'=>$wyniki,
+                    'SEZON'=>$_POST['sezon'],
+                    'WYNIK_A'=>$_POST['wynik_a'],
+                    'WYNIK_B'=>$_POST['wynik_b'],
+                    'DATA'=>$_POST['data_W'],
+                    'komunikat_negatywny' => 'Wybierz inne druzyny.',
+                    'wyswietl_komunikat_negatywny' => '1'));
+                }
+            }
+            else
+            {
+                Twigclass::WyswietlajWidok(21,array('array_path'=>$wyniki,
+                    'SEZON'=>$_POST['sezon'],
+                    'WYNIK_A'=>$_POST['wynik_a'],
+                    'WYNIK_B'=>$_POST['wynik_b'],
+                    'DATA'=>$_POST['data_W'],
+                    'komunikat_negatywny' => 'Uzupełnij dane.',
+                    'wyswietl_komunikat_negatywny' => '1'));
+            }
+        }
+        break;
+        
+        case 'edytowanie_meczu':
+        {
+            $wyniki=DataBaseclass::selectBySQL('SELECT `nazwa` FROM `druzyna`');
+
+            if( ($_POST['sezon']!="") AND ($_POST['data_W']!="") )
+            {
+                if($_POST['druzynaA']!=$_POST['druzynaB'])
+                {
+                    if(($_POST['wynik_a']=="" && $_POST['wynik_b']=="")||($_POST['wynik_a']!="" && $_POST['wynik_b']!=""))
+                    {
+                        $wynik=DataBaseclass::selectBySQL('SELECT `druzyna` FROM `druzyna` WHERE `nazwa`="'.$_POST['druzynaA'].'";');
+                        foreach ($wynik as $i) { $_temporary["iddruzynaA"]=$i["druzyna"]; }
+                        $wynik=DataBaseclass::selectBySQL('SELECT `druzyna` FROM `druzyna` WHERE `nazwa`="'.$_POST['druzynaB'].'";');
+                        foreach ($wynik as $i) { $_temporary["iddruzynaB"]=$i["druzyna"]; }
+                        /*Sprawdzic czy juz istenieja takie mecze*/
+                        
+                        DataBaseclass::updateTable('UPDATE `wynik` SET `Sezon`="'.$_POST['sezon'].'",`Druzyna_A`="'.$_temporary["iddruzynaA"].'",`Druzyna_B`='.$_temporary["iddruzynaA"].',`Wynik_A`='.(($_POST['wynik_a']=="")?'NULL':'"'.$_POST['wynik_a'].'"').',`Wynik_B`='.(($_POST['wynik_b']=="")?'NULL':'"'.$_POST['wynik_b'].'"').',`Data`="'.$_POST['data_W'].'" WHERE `ID`="'.$_POST['ID'].'";');
+                        Przekierowaniaclass::Przekieruj($_SERVER['PHP_SELF'], 60);
+                        Twigclass::WyswietlajWidok(22,array('komunikat_pozytywny' => 'Pomyślnie zeedytowano mecz. Przekierowanie nastąpi za 1 min.',
+                            'wyswietl_komunikat_pozytywny' => '1',
+                            'poprane_zeedytowany' => '1'));
+                    }
+                    else
+                    {
+                        Twigclass::WyswietlajWidok(22,array('array_path'=>$wyniki,
+                            'SEZON'=>$_POST['sezon'],
+                            'WYNIK_A'=>$_POST['wynik_a'],
+                            'WYNIK_B'=>$_POST['wynik_b'],
+                            'DATA'=>$_POST['data_W'],
+                            'komunikat_negatywny' => 'Albo puste wyniki, albo pełne wyniki.',
+                            'wyswietl_komunikat_negatywny' => '1',
+                            'ID'=>$_POST['ID'],
+                            'wybrane'=>1));
+                    }
+                }
+                else
+                {
+                    Twigclass::WyswietlajWidok(22,array('array_path'=>$wyniki,
+                        'SEZON'=>$_POST['sezon'],
+                        'WYNIK_A'=>$_POST['wynik_a'],
+                        'WYNIK_B'=>$_POST['wynik_b'],
+                        'DATA'=>$_POST['data_W'],
+                        'komunikat_negatywny' => 'Wybierz inne druzyny.',
+                        'wyswietl_komunikat_negatywny' => '1',
+                        'ID'=>$_POST['ID'],
+                        'wybrane'=>1));
+                }
+            }
+            else
+            {
+                Twigclass::WyswietlajWidok(22,array('array_path'=>$wyniki,
+                    'SEZON'=>$_POST['sezon'],
+                    'WYNIK_A'=>$_POST['wynik_a'],
+                    'WYNIK_B'=>$_POST['wynik_b'],
+                    'DATA'=>$_POST['data_W'],
+                    'komunikat_negatywny' => 'Uzupełnij dane.',
+                    'wyswietl_komunikat_negatywny' => '1',
+                    'ID'=>$_POST['ID'],
+                    'wybrane'=>1));
+            }
+        }
+        break;
+        
+        case 'koniec_kolejki':
+        {
+         $SQL="select
+  w.druzyna,
+  w.nazwa,
+  sum(case when gosp < gosc then 1 else 0 end) przegrane,
+  sum(case when gosp = gosc then 1 else 0 end) remisy,
+  sum(case when gosp > gosc then 1 else 0 end) wygrane,
+  count(*) rozegranych,
+  sum(gosp) strzelone,
+  sum(gosc) stracone
+from
+(select 
+  d.druzyna,
+  d.nazwa,
+  case when d.druzyna = w.druzyna_a then wynik_a else wynik_b end gosp,
+  case when d.druzyna = w.druzyna_a then wynik_b else wynik_a end gosc
+from 
+  druzyna d
+left join wyniki w on w.druzyna_a = d.druzyna or w.druzyna_b = d.druzyna) w
+
+group by
+  w.druzyna
+order by 
+  w.druzyna";
+            
+        }
+        break;
     }
 }
 

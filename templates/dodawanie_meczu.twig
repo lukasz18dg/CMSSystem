@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "pl">
+{% include 'head.twig' %}
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
+		{% include 'logo_i_navbar.twig' %}
+		{% include 'komunikat_pozytywny.twig' %}
+		{% include 'komunikat_negatywny.twig' %}
+                {% if  poprawne_dodanie_meczu is not defined %}
+                    <form role="form" action="index.php?page=dodawanie_meczu" method="post" id="form1">
+                        Sezon:
+                        {% if SEZON is defined %}
+                            <input type="text" name="sezon" value="{{ SEZON }}">
+                        {% else %}
+                            <input type="text" name="sezon" value="">
+                        {% endif %}
+
+
+                        Drużyna A:
+                        <select name="druzynaA">
+                            {% for value in array_path %}
+                                {% for test in value %}
+                                    <option value="{{ test }}">{{ test }}</option> 
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                        
+                        Drużyna B:
+                        <select name="druzynaB">
+                            {% for value in array_path %}
+                                {% for test in value %}
+                                    <option value="{{ test }}">{{ test }}</option> 
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                        
+                        Wynik A:
+                        {% if WYNIK_A is defined %}
+                        <input type="text" value="{{ WYNIK_A }}" name="wynik_a" >
+                        {% else %}
+                        <input type="text" value="" name="wynik_a" id="sezon">
+                        {% endif %}
+                        
+                        Wynik B:
+                        {% if WYNIK_B is defined %}
+                        <input type="text" value="{{ WYNIK_B }}" name="wynik_b" >
+                        {% else %}
+                        <input type="text" value="" name="wynik_b">
+                        {% endif %}
+                        
+                        Data 
+                        RRRR-MM-DD 
+                        {% if DATA is defined %}
+                            <input type="text" name="data_W" value="{{ DATA }}">
+                        {% else %}
+                            <input type="text" name="data_W" value="">
+                        {% endif %}
+                        
+                        
+                        <input type="hidden" name="send" value="dodawanie_meczu">
+                        <button type="submit" class="btn btn-primary btn-block">
+                        <span class="glyphicon glyphicon-ok"> Wyślij</span></button>
+                    </form>
+                {% endif %}
+		
+	</body>
+</html>
